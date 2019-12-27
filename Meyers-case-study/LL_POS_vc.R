@@ -1,450 +1,520 @@
-
-<!DOCTYPE html>
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta http-equiv="X-UA-Compatible" content="IE=7,IE=8,IE=9">
-	<title>Casualty Actuarial Society | Casualty Actuarial Society Code of Professional Conduct | Standards and ethics | Washington DC</title>
-	<meta name="title" content="Casualty Actuarial Society">
-	<meta name="Description" content="The Casualty Actuarial Society is a professional organization of actuaries whose purpose is the advancement of the body of knowledge of actuarial science applied to property, casualty, and similar risk exposures.">
-	<meta name="Keywords" content="Casualty Actuarial Society, actuary, actuaries, CAS, actuarial science, property, casualty and similar risk, examination, professional organization, association, education, quantitative risk analysis, hazard risk, propery-liability insurance risk, casualty insurance risk, integrated risk management.">
-
-	<meta name="google-site-verification" content="">
-
-	<meta name="author" content="Matrix Group International">
-	<meta name="Copyright" content="Copyright Casualty Actuarial Society 1995 - 2012. All rights reserved">
-
-	<!-- Dublin Core Metadata : http://dublincore.org/ -->
-	<meta name="DC.title" content="Casualty Actuarial Society">
-	<meta name="DC.subject" content="The Casualty Actuarial Society is a professional organization of actuaries whose purpose is the advancement of the body of knowledge of actuarial science applied to property, casualty, and similar risk exposures.">
-	<meta name="DC.creator" content="Matrix Group International">
-
-	<link rel="shortcut icon" href="/images/favicon.ico" />
-
-		
-	<link rel="stylesheet" href="/stylesheets/reset.css" type="text/css" />
-	<link rel="stylesheet" href="/stylesheets/uniform.default.css" type="text/css" />
-	<link rel="stylesheet" type="text/css" href="/stylesheets/tools.css"/>
-	<link rel="stylesheet" href="/stylesheets/style.css" type="text/css" />
-	<link rel="stylesheet" href="/stylesheets/mobile.css" type="text/css" />
-
-</head>
-
-
-<body id="professionalism"	class="">
-
-<div class="wrapper">
-	
-
-	
-	<div id="world"></div>
-	<div id="logo"><a href="/"><img src="/images/logo.png" alt="Casualty Actuarial Society logo"/></a></div>
-
-	
-	
-
-<div id="utility_nav">
-
-	
-	<ul class="social">
-		<li><a href="http://twitter.com/#!/CASact"><img src="/images/twitter.png"></a></li>
-		<li><a href="http://www.facebook.com/CasualtyActuarialSociety"><img src="/images/facebook.png"></a></li>
-		<li><a href="http://www.linkedin.com/groups?mostPopular=&gid=3449702"><img src="/images/linkedin.png"></a></li>
-		<li><a href="/?fa=rss"><img src="/images/rss.png"></a></li>
-	</ul>
-
-	
-	<form id="search" method="get" action="/search/">
-		<input type="text" name="q" placeholder="SEARCH" />
-		<input type="submit" name="search_submit" id="search_submit" />
-	</form>
-
-	
-	
-	<ul class="menu">
-		<li class="first-child">
-			
-				<a href="https://netforum.casact.org/eWeb/DynamicPage.aspx?WebCode=LoginRequired&Site=cas&URL_success=http://www.casact.org/login.aspx?urlreturn=/professionalism/standards/index.cfm_cstkey={cst_key}">Log In</a>
-			
-		</li>
-		<li><a href="http://community.casact.org/p/us/sn">My Profile</a></li>
-		<li><a href="https://netforum.casact.org/eWeb/DynamicPage.aspx?webcode=COEPubSearch">Store</a></li>
-		<li><a href="/index.cfm?fa=tools">Tools</a></li> 
-		<li><a href="/about/?fa=contact">Contact Us</a></li>
-	</ul>
-	
-</div> <!-- /utility_nav -->
-
-	
-	<header id="branding">
-		<h1>Casualty Actuarial Society</h1>
-		
-
-<ul class="menu branding_utility">
-	<li class="first-child"><a href="/about/">About Us</a></li>
-	<li><a href="/membership/">Membership</a></li>
-	<li><a href="/press/">Press Room</a></li>
-	<li><a href="/advertising/">Advertising</a></li>
-    <li><a href="http://www.CASstudentcentral.org">CAS Student Central</a></li>
-    <li><a href="http://centennial.casact.org">Centennial Celebration</a></li>
-    <li><a href="http://www.beanactuary.org">Be An Actuary</a></li>
-</ul> 
-	</header>
-
-	
-
-<ul id="nav">
-
-	
-		<li>
-			<a href='/admissions/'>Exams &<br/>Admissions</a>
-			<ul class="leftsub">
-				<li class="thirty">
-					<div class="padding">
-						<div class="itemImg"><img src="/images/nav_thumbs/exams.jpg"></div>
-						<div class="itemDesc"></div>
-					</div>
-				</li>
-				<li class="seventy">
-					<ul id='main'><li class='plus' id='mainnav_22'><a href='/admissions/process/'>Admissions Process</a> <ul><li id='mainnav_156'><a href='/admissions/process/?fa=introduction'>Education Principles</a></li><li id='mainnav_157'><a href='/admissions/syllabus/index.cfm?fa=exam_grades#waivers'>Waiver Policy for Exams</a></li></ul></li><li class='plus' id='mainnav_23'><a href='/admissions/syllabus/'>Syllabus of Basic Education</a> <ul><li id='mainnav_158'><a href='/admissions/syllabus/index.cfm?fa=update'>All Exam Updates</a></li><li id='mainnav_160'><a href='/admissions/syllabus/index.cfm?fa=syllabus_archives'>Syllabus Archives</a></li></ul></li><li class='plus' id='mainnav_24'><a href='/admissions/exams/'>Exams</a> <ul><li id='mainnav_161'><a href='/admissions/syllabus/index.cfm?fa=preliminary_exams&parentID=161'>Preliminary Exams 1, 2, 3F, 4</a></li><li id='mainnav_332'><a href='/admissions/syllabus/index.cfm?fa=LCsyllabi&parentID=332'>Exam LC (Life Contingencies)</a></li><li id='mainnav_333'><a href='/admissions/syllabus/index.cfm?fa=STsyllabi&parentID=333'>Exam ST (Stochastic Processes/Statistics)</a></li><li id='mainnav_163'><a href='/admissions/syllabus/index.cfm?fa=5syllabi&parentID=163'>Exam 5</a></li><li id='mainnav_164'><a href='/admissions/syllabus/Exam6-Taipei.pdf'>Exam 6 - Actuarial Institute of Chinese Taipei</a></li><li id='mainnav_165'><a href='/admissions/syllabus/index.cfm?fa=6Csyllabi&parentID=165'>Exam 6 - Canada</a></li><li id='mainnav_166'><a href='/admissions/syllabus/index.cfm?fa=6USsyllabi&parentID=166'>Exam 6 - United States</a></li><li id='mainnav_167'><a href='/admissions/syllabus/index.cfm?fa=7syllabi&parentID=167'>Exam 7</a></li><li id='mainnav_168'><a href='/admissions/syllabus/index.cfm?fa=8syllabi&parentID=168'>Exam 8</a></li><li id='mainnav_169'><a href='/admissions/syllabus/index.cfm?fa=9syllabi&parentID=169'>Exam 9</a></li><li id='mainnav_170'><a href='/cera/index.cfm?fa=ST9&parentID=170'>Exam ST9</a></li></ul></li><li id='mainnav_25'><a href='/admissions/index.cfm?fa=veeInfo'>VEE Information</a></li><li id='mainnav_26'><a href='/admissions/syllabus/?fa=online_course'>Online Courses</a></li><li id='mainnav_27'><a href='/education/index.cfm?fa=prof'>Course on Professionalism</a></li><li id='mainnav_28'><a href='/admissions/index.cfm?fa=codes'>Candidate's Code of Ethics</a></li><li id='mainnav_30'><a href='/newsletter/index.cfm?fa=ffmain'>Newsletters</a></li><li id='mainnav_31'><a href='/admissions/index.cfm?fa=exstatus'>Verify Candidate's Education and Examination Status</a></li><li id='mainnav_32'><a href='/admissions/passlist/index.cfm?fa=passcand'>Exam Results</a></li><li id='mainnav_311'><a href='/admissions/reports/'>Reports</a></li><li id='mainnav_33'><a href='/help/index.cfm?fa=webfaq'>FAQs</a></li></ul>
-				</li>
-				<div class="clear"></div>
-			</ul>
-		</li>
-		
-		
-		<li>
-			<a href='/education/'>Professional<br/>Education</a>
-			<ul class="leftsub">
-				<li class="thirty">
-					<div class="padding">
-						<div class="itemImg"><img src="/images/nav_thumbs/professional-education.jpg"></div>
-						<div class="itemDesc"></div>
-					</div>
-				</li>
-				<li class="seventy">
-					<ul id='main'><li id='mainnav_35'><a href='/education/index.cfm?fa=ceinfo'>Continuing Education</a></li><li id='mainnav_39'><a href='/education/index.cfm?fa=calendar'>Events Listing</a></li><li id='mainnav_36'><a href='http://cas.confex.com/cas/ucas12/webprogramucas/'>University of CAS</a></li><li id='mainnav_37'><a href='/education/index.cfm?fa=archives'>Meetings and Seminars Archive</a></li><li id='mainnav_38'><a href='/education/index.cfm?fa=handouts'>Presentations Search</a></li><li id='mainnav_325'><a href='/education/index.cfm?fa=current_projects'>Call for Presentations and RFPs</a></li><li id='mainnav_326'><a href='/education/index.cfm?fa=management_guide'>Session Management Resources</a></li><li id='mainnav_334'><a href='/education/interactive/index.cfm?fa=interactive'>Interactive Online Education</a></li></ul>
-				</li>
-				<div class="clear"></div>
-			</ul>
-		</li>
-		
-		
-		<li>
-			<a href='/professionalism/'>Professionalism</a>
-			<ul class="leftsub">
-				<li class="thirty">
-					<div class="padding">
-						<div class="itemImg"><img src="/images/nav_thumbs/professionalism.jpg"></div>
-						<div class="itemDesc"></div>
-					</div>
-				</li>
-				<li class="seventy">
-					<ul id='main'><li id='mainnav_41'><a href='/professionalism/standards/'>Standards and Guidelines</a></li><li id='mainnav_42'><a href='/professionalism/policiesProc/index.cfm?fa=code'>Code of Conduct</a></li><li id='mainnav_43'><a href='/professionalism/standards/princip/'>Statement of Principles</a></li><li id='mainnav_44'><a href='/professionalism/policiesProc/'>Policies and Procedures</a></li></ul>
-				</li>
-				<div class="clear"></div>
-			</ul>
-		</li>
-		
-		
-		<li>
-			<a href='/community/'>Community</a>
-			<ul class="leftsub">
-				<li class="thirty">
-					<div class="padding">
-						<div class="itemImg"><img src="/images/nav_thumbs/community.jpg"></div>
-						<div class="itemDesc"></div>
-					</div>
-				</li>
-				<li class="seventy">
-					<ul id='main'><li id='mainnav_337'><a href='http://community.casact.org/p/us/in/'>Online Community</a></li><li class='plus' id='mainnav_47'><a href='/community/volunteer/'>Volunteer</a> <ul><li id='mainnav_204'><a href='/community/volunteer/index.cfm?fa=call'>Opportunities</a></li><li id='mainnav_205'><a href='/community/volunteer/index.cfm?fa=resources'>Chair Resources</a></li><li id='mainnav_206'><a href='/community/volunteer/survey/'>Participation Survey</a></li><li id='mainnav_207'><a href='/community/volunteer/index.cfm?fa=why'>Why Volunteer</a></li><li id='mainnav_312'><a href='/community/volunteer/index.cfm?fa=awards'>Awards</a></li></ul></li><li class='plus' id='mainnav_48'><a href='/community/affiliates/'>Regional Affiliates</a> <ul><li id='mainnav_209'><a href='/community/affiliates/guide/'>Resource Guide</a></li></ul></li><li id='mainnav_49'><a href='/community/sections/'>Special Interest Sections</a></li><li id='mainnav_50'><a href='https://netforum.casact.org/eWeb/Dynamicpage.aspx?webcode=CommitteeDirectory'>Committee Directory</a></li><li id='mainnav_51'><a href='/community/academic/'>Academic Community</a></li><li id='mainnav_52'><a href='/community/global/'>Global Connections</a></li><li id='mainnav_53'><a href='/community/index.cfm?fa=social'>Social Media</a></li><li id='mainnav_297'><a href='/forum/'>Forums</a></li></ul>
-				</li>
-				<div class="clear"></div>
-			</ul>
-		</li>
-		
-		
-		<li>
-			<a href='/calendar/'>Calendar</a>
-			<ul class="leftsub">
-				<li class="thirty">
-					<div class="padding">
-						<div class="itemImg"><img src="/images/nav_thumbs/calendar.jpg"></div>
-						<div class="itemDesc"></div>
-					</div>
-				</li>
-				<li class="seventy">
-					<ul id='main'><li id='mainnav_55'><a href='/calendar/index.cfm?fa=main'>Events Calendar</a></li><li id='mainnav_56'><a href='/calendar/index.cfm?fa=archive'>Events Archive</a></li><li id='mainnav_57'><a href='/calendar/index.cfm?fa=searchform'>Search Events</a></li><li id='mainnav_58'><a href='/calendar/index.cfm?fa=call'>Call for Speakers</a></li><li id='mainnav_155'><a href='http://www.actuaries.org/calendar/'>Global Actuarial Calendar</a></li></ul>
-				</li>
-				<div class="clear"></div>
-			</ul>
-		</li>
-		
-		
-		<li>
-			<a href='/pubs/'>Publications</a>
-			<ul class="leftsub">
-				<li class="thirty">
-					<div class="padding">
-						<div class="itemImg"><img src="/images/nav_thumbs/pubs.jpg"></div>
-						<div class="itemDesc"></div>
-					</div>
-				</li>
-				<li class="seventy">
-					<ul id='main'><li id='mainnav_60'><a href='/pubs/?fa=cas'>CAS Publications</a></li><li id='mainnav_61'><a href='/pubs/?fa=actuarialreview'>The Actuarial Review</a></li><li id='mainnav_62'><a href='/pubs/forum/'>E-Forum</a></li><li id='mainnav_63'><a href='/newsletter/index.cfm?fa=ffmain'>Future Fellows</a></li><li id='mainnav_64'><a href='http://www.variancejournal.org'>Variance Journal</a></li><li id='mainnav_339'><a href='/about/thecas/annual%20reports/'>Annual Reports</a></li><li id='mainnav_65'><a href='/education/index.cfm?fa=brochure'>Event Publications</a></li><li id='mainnav_66'><a href='/pubs/gbse/'>Business Skills Online Publications Resource</a></li><li id='mainnav_67'><a href='/pubs/proceed/index.cfm?fa=pastind'>Yearbook / Proceedings</a></li><li id='mainnav_68'><a href='/pubs/index.cfm?fa=submission'>Submit Your Work</a></li><li id='mainnav_69'><a href='/pubs/index.cfm?fa=books'>Books</a></li><li id='mainnav_70'><a href='/pubs/index.cfm?fa=journals'>Other Journals</a></li><li id='mainnav_73'><a href='/pubs/index.cfm?fa=monographs'>Monographs</a></li><li id='mainnav_74'><a href='/pubs/index.cfm?fa=onlinepubs'>Online Publications</a></li><li id='mainnav_75'><a href='/pubssearch/index.cfm?fuseaction=adv_search'>CAS Online Index</a></li></ul>
-				</li>
-				<div class="clear"></div>
-			</ul>
-		</li>
-		
-		
-		<li>
-			<a href='/research/'>Research</a>
-			<ul class="rightsub">
-				<li class="thirty">
-					<div class="padding">
-						<div class="itemImg"><img src="/images/nav_thumbs/research.jpg"></div>
-						<div class="itemDesc"></div>
-					</div>
-				</li>
-				<li class="seventy">
-					<ul id='main'><li class='plus' id='mainnav_79'><a href='/research/index.cfm?fa=currentresearch'>Current Projects</a> <ul><li id='mainnav_133'><a href='/research/index.cfm?fa=currentresearch#call'>Call Paper Programs</a></li><li id='mainnav_134'><a href='/research/index.cfm?fa=currentresearch#rfp'>RFPs</a></li><li id='mainnav_135'><a href='/research/wp/'>Working Papers</a></li></ul></li><li id='mainnav_80'><a href='/about/index.cfm?fa=prizes'>CAS Research Prizes</a></li><li id='mainnav_82'><a href='/research/index.cfm?fa=comdir'>Committees and Working Parties</a></li><li id='mainnav_324'><a href='/research/index.cfm?fa=com_resources'>Committee Resources</a></li><li id='mainnav_83'><a href='/research/index.cfm?fa=newsletters'>Department Newsletter</a></li><li class='plus' id='mainnav_85'><a href='/research/index.cfm?fa=resproj'>Past Projects</a> <ul><li id='mainnav_313'><a href='/research/lsmwp/'>Loss Simulation Model</a></li><li id='mainnav_322'><a href='/press/index.cfm?fa=viewArticle&articleID=2094'>Climate Change Report, Phase 1</a></li><li id='mainnav_287'><a href='/research/rpp2/'>Risk Premium Project</a></li></ul></li><li id='mainnav_77'><a href='/research/dare/index.cfm?fa=adv_search'>Research Article Search (DARE)</a></li><li id='mainnav_78'><a href='/research/index.cfm?fa=researchresources'>Research Resources</a></li><li id='mainnav_81'><a href='/research/index.cfm?fa=suggest'>Suggest a Project</a></li></ul>
-				</li>
-				<div class="clear"></div>
-			</ul>
-		</li>
-		
-		
-		<li>
-			<a href='/area/'>Practice<br/>Areas</a>
-			<ul class="rightsub">
-				<li class="thirty">
-					<div class="padding">
-						<div class="itemImg"><img src="/images/nav_thumbs/practice-areas.jpg"></div>
-						<div class="itemDesc"></div>
-					</div>
-				</li>
-				<li class="seventy">
-					<ul id='main'><li id='mainnav_91'><a href='/area/erm/'>Enterprise Risk Management</a></li><li id='mainnav_93'><a href='/area/rate/'>Ratemaking</a></li><li id='mainnav_336'><a href='/area/predictive-modeling/'>Predictive Modeling</a></li><li class='plus' id='mainnav_95'><a href='/area/reserve/'>Reserving</a> <ul><li id='mainnav_327'><a href='/area/reserve/index.cfm?fa=committees'>Committees</a></li><li id='mainnav_328'><a href='/area/reserve/index.cfm?fa=resources'>Resources</a></li><li id='mainnav_329'><a href='/area/reserve/index.cfm?fa=standards_principles'>Standards and Principles</a></li><li id='mainnav_330'><a href='/area/reserve/index.cfm?fa=articles'>Articles, Newsletters, Presentations</a></li></ul></li></ul>
-				</li>
-				<div class="clear"></div>
-			</ul>
-		</li>
-		
-		
-		<li>
-			<a href='http://careers.casact.org'>Career<br/>Center</a>
-			<ul class="rightsub">
-				<li class="thirty">
-					<div class="padding">
-						<div class="itemImg"><img src="/images/nav_thumbs/career-center.jpg"></div>
-						<div class="itemDesc"></div>
-					</div>
-				</li>
-				<li class="seventy">
-					<ul id='main'><li id='mainnav_106'><a href='http://careers.casact.org/r/jobs/post/post.cfm?site_id=2829'>Post a Job</a></li><li id='mainnav_107'><a href='http://careers.casact.org/r/candidates/bank/index.cfm?site_id=2829'>View Resumes</a></li><li id='mainnav_109'><a href='http://careers.casact.org/r/jobs/post/index.cfm?site_id=2829'>Products / Pricing</a></li><li id='mainnav_110'><a href='http://careers.casact.org/c/profile/view/index.cfm?site_id=2829&referrer=2829'>Post a Resume</a></li><li id='mainnav_111'><a href='http://careers.casact.org/c/search_results.cfm?site_id=2829'>Job Search</a></li><li id='mainnav_112'><a href='http://careers.casact.org/c/agents/index.cfm?site_id=2829'>Job Alerts</a></li><li id='mainnav_113'><a href='http://careers.casact.org/help/index.cfm?fa=careerfaq'>FAQ</a></li></ul>
-				</li>
-				<div class="clear"></div>
-			</ul>
-		</li>
-		
-		
-
-</ul> <!-- i end herer -->
-
-
-			<section class="main_contain">
-				<header id="page_heading">
-					<h1 id="page_name">We're Sorry</h1>
-				</header>
-				<div class="grey_column">
-
-					<div id="guts">
-						
-
-<div class="icol1 left">
-
-	<ul id='subnav'></ul>
-
-</div> <!-- icol1 -->
-
-				<article class="icol2 left">
-					<div class="interior_content">
-
-						<div class="breadcrumbs">
-							<ul class="menu left crumbs">
-								<li class='first-child'><a href='/'>Home</a></li><li>We're Sorry</li>
-							</ul>
-
-							
-
-							<div class="clear"></div>
-						</div>
-						<h1>Page Not Found</h1>
-					<p>
-	<strong>
-	We're sorry, but the page you requested cannot be found.<br/>
-	The CAS web site has been redesigned and much of our content has been relocated.
-	</strong>
-</p>
-
-<p>
-	Please verify the page location in the address field of your browser.
-	If you followed a link from another site or used a bookmark, the page may have been moved or deleted.
-</p><p>	To find the information you seek visit our <a href="/">home page</a>, explore our site map below, or use the	Search field at the top or bottom of this page.</p>
-					</div>
-				</article> <!-- icol2 -->
-				
-				
-<div class="icol3 left">
-	<div class="col_wrap last-child">
-
-		
-		
-
-	</div><!-- col_wrap -->
-</div> <!-- icol3 --> 
-			</div><!-- /guts -->
-
-		</div> <!-- grey_column -->
-	</section><!-- main_contain -->
-
-
-	<div class="clear"></div>
-</div><!-- /wrapper -->
-
-
-
-	<div id="footer">
-	<div class="wrapper">
-	
-		<div class="seventy left" id="int_qlinks">
-			<div class="padding">
-				
-
-<h5>Quick Links</h5>
-
-
-		<ul class="left fortyfive">
-	
-
-	<li><a href="https://netforum.casact.org/eWeb/DynamicPage.aspx?WebCode=LoginRequired&Site=cas&URL_success=http://www.casact.org/login.aspx?urlreturn=/professionalism/standards/index.cfm_cstkey={cst_key}">Log In</a></li>
-
-	
-
-	<li><a href="http://community.casact.org/p/us/sn">My Profile</a></li>
-
-	
-
-	<li><a href="/about/leadership/elections/">Election Information</a></li>
-
-	
-
-	<li><a href="/press/">News</a></li>
-
-	
-
-	<li><a href="/admissions/">Admissions/Exams</a></li>
-
-	
-
-	<li><a href="http://www.beanactuary.org">Be An Actuary</a></li>
-
-	
-
-	<li><a href="http://blog.casact.org">Blog</a></li>
-
-	
-
-	<li><a href="/cera/">CERA</a></li>
-
-	
-		</ul>
-		<ul class="left">
-	
-
-	<li><a href="/calendar/">Calendar</a></li>
-
-	
-
-	<li><a href="https://netforum.casact.org/eWeb/Dynamicpage.aspx?webcode=CommitteeDirectory">Committee Directory</a></li>
-
-	
-
-	<li><a href="/about/index.cfm?fa=contact">Contact Us</a></li>
-
-	
-
-	<li><a href="/membership/join/">Join / Renew</a></li>
-
-	
-
-	<li><a href="http://community.casact.org/p/cm/ld/fid=6">Directory</a></li>
-
-	
-
-	<li><a href="/community/affiliates/">Regional Affiliates</a></li>
-
-	
-
-	<li><a href="/advertising/?fa=partners">Society Partners</a></li>
-
-	
-
-	<li><a href="/community/volunteer/">Volunteer</a></li>
-
-	
-		</ul>
-	
-			</div>
-		</div>
-		<div class="thirty left">
-			<ul class="widget">
-				<li>
-
-
-<h5>People Search</h5>
-
-<form class="footer_form" action="http://community.casact.org/p/cm/ld/fid=6" 
-	id="eWebForm" method="get">
-	
-	<input type="text" name="fname" id="firstname" onfocus="if(this.value == 'First Name') { this.value = ''; }"
-		value="First Name" placeholder="First Name" />
-	
-		<input type="text" name="lname" id="lastname" onfocus="if(this.value == 'Last Name') { this.value = ''; }"
-		value="Last Name" placeholder="Last Name" />
-	
-	<input type="submit" value="Search" onclick="cleanInputs()" onKeyUp="cleanInputs()"/>
-	<div class="clear"></div>
-</form>
-
-	<a href="http://community.casact.org/p/cm/ld/fid=6" class="plus">Advanced Search</a><br />
-<a href="/admissions/index.cfm?fa=exstatus" class="plus">Search Candidate Exam Status</a><br/>
-<a href="https://netforum.casact.org/eWeb/DynamicPage.aspx?webcode=CEDirectory" class="plus">CE Compliance Status</a>
-
-				</li>
-			</ul>
-		</div>
-
-
-
-		<div class="clear"></div>
-
-		<div class="site_info padding">
-			<p>
-		 		<a href="/?fa=copy">&copy; 2014 Casualty Actuarial Society.</a> All Rights Reserved.  <a href="/?fa=privStatement">Privacy Statement</a><br />
-				4350 N. Fairfax Drive, Suite 250, Arlington, VA 22203 | phone: (703) 276-3100 &middot; fax: (703) 276-3108
-				
-			</p>
-			<p>
-				<a href="http://www.matrixgroup.net" target="_blank">Association Web Design</a> and
-				<a href="http://www.matrixgroup.net" target="_blank">Development</a> by
-				<a href="http://www.matrixgroup.net" target="_blank" class="matrixGroup">Matrix Group International, Inc.</a>
-			</p>
-			
-		</div>
-	</div>
-</div>
-
-</body>
-</html> 
+#
+# R/Stan Script that fits the POS model to data underling the
+# Learning Lounge session given at the 2018 CAS Annual Meeting
+# given by Bob Wolf and Mary Frances Miller
+#
+# Script written by Glenn Meyers
+#
+# Run time varies but should be less than 3 minutes with Thin=1
+#
+rm(list = ls())  		# clear workspace
+t0=Sys.time()
+#
+# user input
+#
+run_id="PI-7:16"
+# First letter "P" for paid loss triangle
+# First letter "I" for incurred loss triangle
+keep_cal=7:16 # specifies calendar years for fitting
+#
+# designate output files
+#
+setwd("~/Dropbox/LL CAS Annual Meeting/E-Forum Paper/Case_Study")
+res.stats=NULL
+#res.stats="LL_Reserve_Statistics_POS.csv"
+earlier_runs=NULL
+#earlier_runs=read.csv(file=res.stats)
+AY.Exhibit=NULL
+#AY.Exhibit=paste(run_id,"AY_Exhibit_POS_vc.csv")
+parm.summary=NULL
+parm.summary=paste(run_id,"Parm_Summary_POS_vc.csv")
+#
+# read in data
+#
+raw_paid=read.csv(file="LL_paid_triangle.csv")
+raw_incurred=read.csv(file="LL_incurred_triangle.csv")
+a_Premium=round(raw_paid[,2])
+adata=NULL
+rec=0
+for (d in 1:dim(raw_paid)[1]){
+  for (w in 1:(dim(raw_paid)[1]+1-d)){
+    ay=raw_paid[w,1]
+    net_premium=round(raw_paid[w,2])
+    ploss=round(raw_paid[w,d+2])
+    iloss=round(raw_incurred[w,d+2])
+    cal=w+d-1
+    wne1=ifelse(w==1,1,0)
+    adata=rbind(adata,c(ay,net_premium,w,d,ploss,iloss,cal,wne1))
+  }
+}
+colnames(adata)=c("ay","net_premium","w","d","ploss","iloss","cal","wne1")
+adata=as.data.frame(adata)
+adata=subset(adata,adata$cal<=max(keep_cal))
+rec=1:dim(adata)[1]
+adata=cbind(rec,adata)
+fit_rec=subset(adata$rec,adata$cal %in% keep_cal)
+rdata=subset(adata,adata$cal %in% keep_cal)
+W=max(rdata$w)
+D=max(rdata$d)
+C=max(rdata$cal)
+Premium=rep(0,W)
+for (w in adata$w){
+  Premium[w]=min(subset(adata$net_premium,adata$w==w))
+}
+#
+# get packages
+#
+library(rstan)
+rstan_options(auto_write = TRUE)
+options(mc.cores = parallel::detectCores())
+library(loo)
+library(data.table)
+#
+# Stan input list
+#
+data.POS=list(len_data = length(adata$w),
+              len_fit  = length(fit_rec),
+              fit_rec  = fit_rec,
+              W        = W,
+              D        = D,
+              C        = C,
+              c        = min(keep_cal),
+              logprem  = log(adata$net_premium),
+              logiloss = log(adata$iloss),
+              logploss = log(adata$ploss),
+              w        = adata$w,
+              d        = adata$d,
+              cal      = adata$cal)
+#
+# Stan output parameters
+#
+pars.list=c("logelr","alpha","beta_p","beta_os","sig_p","sig_i",
+            "gamma_pd","gamma_os",
+            "speedup_p","speedup_os","mu_i","mu_p",
+            "log_lik_cpd","log_lik_inc")
+#
+# initialization function for POSModel
+#
+init.POS=function(chain_id){
+  set.seed(12345)
+  list(r_alpha=rnorm(W-1,0,0.2),r_beta_p=runif(D-1),r_beta_os=runif(D),
+       a_ig_p=runif(D),a_ig_i=runif(D),
+       logelr=runif(1,-0.75,-0.5),
+       r_gamma_pd=rnorm(C-1,0,0.025),r_gamma_os=rnorm(C-1,0,0.025))
+}
+#
+# Stan POS script
+#
+POSmodel_stan = "
+data{
+int<lower=1> len_data;
+int<lower=1> len_fit;
+int<lower=1> fit_rec[len_fit];
+int<lower=1> W;
+int<lower=1> D;
+int<lower=1> C;
+int<lower=1> c;
+real logprem[len_data];
+real logiloss[len_data];
+real logploss[len_data];
+int<lower=1,upper=W> w[len_data];
+int<lower=1,upper=D> d[len_data];
+int<lower=1,upper=C> cal[len_data];
+}
+parameters{
+real r_alpha[W-1];
+real r_beta_p[D-1];
+real beta_os[D];
+real r_gamma_pd[C-1];
+real r_gamma_os[C-1];
+real logelr;
+real <lower=0,upper=100000> a_ig_p[D];
+real <lower=0,upper=100000> a_ig_i[D];
+}
+transformed parameters{
+real alpha[W];
+real beta_p[D];
+real gamma_pd[C-1];  //changed naming conventions as Stan had a prior nane
+real gamma_os[C-1];
+real speedup_p[C];
+real speedup_os[C];
+real sig2_p[D];
+real sig2_i[D];
+real sig_p[D];
+real sig_i[D];
+real mu_p[len_data];
+real mu_i[len_data];
+alpha[1] = 0;
+for (i in 2:W) alpha[i] = r_alpha[i-1];
+//
+//paid loss parameters
+//
+for (i in 1:(D-1)) beta_p[i] = r_beta_p[i];
+beta_p[D] = 0;
+for (i in 1:(C-1))
+ if (i<c) gamma_pd[i]=0;
+ else gamma_pd[i]=r_gamma_pd[i-c+1];
+speedup_p[C]=1;
+for (i in 1:(C-1)) speedup_p[C-i]=speedup_p[C-i+1]*(1+gamma_pd[C-i]);
+sig2_p[D] = gamma_cdf(1/a_ig_p[D],1,1);
+for (i in 1:(D-1)) sig2_p[D-i] = sig2_p[D+1-i]+gamma_cdf(1/a_ig_p[i],1,1);
+for (i in 1:D) sig_p[i] = sqrt(sig2_p[i]);
+for (i in 1:len_data){
+mu_p[i] = logprem[i]+logelr+alpha[w[i]]+beta_p[d[i]]*speedup_p[cal[i]];
+}
+//
+// outstanding loss parameters
+//
+for (i in 1:(C-1))
+ if (i<c) gamma_os[i]=0;
+ else gamma_os[i]=r_gamma_os[i-c+1];
+speedup_os[C]=1;
+for (i in 1:(C-1)) speedup_os[C-i]=speedup_os[C-i+1]*(1+gamma_os[C-i]);
+sig2_i[D] = gamma_cdf(1/a_ig_i[D],1,1);
+for (i in 1:(D-1)) sig2_i[D-i] = sig2_i[D+1-i]+gamma_cdf(1/a_ig_i[i],1,1);
+for (i in 1:D) sig_i[i] = sqrt(sig2_i[i]);
+for (i in 1:len_data){
+mu_i[i] = mu_p[i]+beta_os[d[i]]*speedup_os[cal[i]];
+}
+}
+model {
+r_alpha ~ normal(0,3.162);
+r_beta_p ~ normal(0,3.162);
+beta_os ~ normal(0,3.162);
+a_ig_p ~ inv_gamma(1,1);
+a_ig_i ~ inv_gamma(1,1);
+logelr ~ normal(-.4,3.162);
+r_gamma_pd ~ normal(0,0.05);
+r_gamma_os ~ normal(0,0.05);
+for (i in 1:len_fit){
+logploss[fit_rec[i]] ~ normal(mu_p[fit_rec[i]],sig_p[d[fit_rec[i]]]);
+logiloss[fit_rec[i]] ~ normal(mu_i[fit_rec[i]],sig_i[d[fit_rec[i]]]);
+}
+}
+generated quantities{
+vector[len_fit] log_lik_cpd;
+vector[len_fit] log_lik_inc;
+for (i in 1:len_fit){
+log_lik_cpd[i] =
+  normal_lpdf(logploss[fit_rec[i]]|mu_p[fit_rec[i]],sig_p[d[fit_rec[i]]]);
+log_lik_inc[i] =
+  normal_lpdf(logiloss[fit_rec[i]]|mu_i[fit_rec[i]],sig_i[d[fit_rec[i]]]);
+}
+}
+"
+#
+# run the model
+#
+stan_thin=1
+stan_iter=5000
+Rhat_target=1.05
+max_Rhat=2
+while ((max_Rhat > Rhat_target)&(stan_thin<17)){
+  fitPOS=stan(model_code=POSmodel_stan, data = data.POS,init=init.POS,
+              seed = 12345,iter=stan_iter,thin=stan_thin,
+              chains = 4,pars=pars.list,
+              control=list(adapt_delta=.9999,max_treedepth=50),
+              refresh=0)
+  fitPOS_summary=
+    as.matrix(summary(fitPOS)$summary)[1:(W+4*D+4*C-1),c(1,3,10)]
+  mrh=subset(fitPOS_summary,is.na(fitPOS_summary[,3])==F)
+  max_Rhat=round(max(mrh[,3]),4)
+  print(paste("Maximum Rhat =",max_Rhat,"Thin =",stan_thin))
+  stan_thin=2*stan_thin
+  stan_iter=2*stan_iter
+}
+stan_thin=stan_thin/2
+print(fitPOS_summary)
+#
+# extract information from stan output to process in R
+#
+b <- extract(fitPOS)
+logelr=b$logelr
+alpha=b$alpha
+beta_p=b$beta_p
+beta_os=b$beta_os
+gamma_p=b$gamma_pd
+gamma_os=b$gamma_os
+speedup_p=b$speedup_p
+speedup_os=b$speedup_os
+sig_p=b$sig_p
+sig_i=b$sig_i
+mu_p=b$mu_p
+mu_i=b$mu_i
+num.mcmc=length(logelr)
+#
+# goodness of fit statistics for comparing models
+#
+elpd_cpd=loo(b$log_lik_cpd)
+elpd_inc=loo(b$log_lik_inc)
+#
+# calculate loss statistice by accident year for simulated outcomes
+#
+at.wdD_p=matrix(0,num.mcmc,W)
+at.wdD_i=matrix(0,num.mcmc,W)
+for (w in 1:W){
+  mu.wdD=log(Premium[w])+alpha[,w]+logelr
+  at.wdD_p[,w]=exp(mu.wdD+sig_p[,D]^2/2) # this the estimate given mu and sigma
+  at.wdD_i[,w]=exp(mu.wdD+sig_i[,D]^2/2) # this the estimate given mu and sigma
+}
+#
+# calculate loss statistics and output to data frame
+#
+ss.wdD_p=rep(0,W)
+ms.wdD_p=rep(0,W)
+ss.wdD_i=rep(0,W)
+ms.wdD_i=rep(0,W)
+#
+for (w in 1:W){
+  ms.wdD_p[w]=mean(at.wdD_p[,w])
+  ss.wdD_p[w]=sd(at.wdD_p[,w])
+  ms.wdD_i[w]=mean(at.wdD_i[,w])
+  ss.wdD_i[w]=sd(at.wdD_i[,w])
+}
+Pred.POS_p=rowSums(at.wdD_p)
+ms.tdD_p=mean(Pred.POS_p)
+ss.tdD_p=sd(Pred.POS_p)
+POS.Estimate_p=round(ms.wdD_p)
+POS.SE_p=round(ss.wdD_p)
+POS.CV_p=round(POS.SE_p/POS.Estimate_p,4)
+POS.RetroRes_p=cumsum(POS.Estimate_p)
+for (w in 1:W){
+  POS.RetroRes_p[w]=POS.RetroRes_p[w]-sum(adata$ploss[adata$cal==w])
+}
+Pred.POS_i=rowSums(at.wdD_i)
+ms.tdD_i=mean(Pred.POS_i)
+ss.tdD_i=sd(Pred.POS_i)
+POS.Estimate_i=round(ms.wdD_i)
+POS.SE_i=round(ss.wdD_i)
+POS.CV_i=round(POS.SE_i/POS.Estimate_i,4)
+POS.RetroRes_i=cumsum(POS.Estimate_i)
+for (w in 1:W){
+  POS.RetroRes_i[w]=POS.RetroRes_i[w]-sum(adata$ploss[adata$cal==w])
+}
+# append totals
+POS.Estimate_p=c(POS.Estimate_p,round(ms.tdD_p))
+POS.SE_p=c(POS.SE_p,round(ss.tdD_p))
+POS.CV_p=c(POS.CV_p,round(ss.tdD_p/ms.tdD_p,4))
+POS.Estimate_i=c(POS.Estimate_i,round(ms.tdD_i))
+POS.SE_i=c(POS.SE_i,round(ss.tdD_i))
+POS.CV_i=c(POS.CV_i,round(ss.tdD_i/ms.tdD_i,4))
+Premium=c(Premium,sum(Premium))
+POS.RetroRes_p=c(POS.RetroRes_p,POS.RetroRes_p[W])
+POS.RetroRes_i=c(POS.RetroRes_i,POS.RetroRes_i[W])
+AY=c(sort(unique(adata$ay)),"Total")
+AY_Exhibit=data.frame(AY,Premium,POS.Estimate_p,POS.Estimate_i,
+                      POS.SE_p,POS.SE_i,POS.CV_p,POS.CV_i,
+                      POS.RetroRes_p,POS.RetroRes_i)
+print(AY_Exhibit)
+Premium=Premium[W+1]
+POS.Estimate_p=POS.Estimate_p[W+1]
+POS.Estimate_i=POS.Estimate_i[W+1]
+POS.SE_p=POS.SE_p[W+1]
+POS.SE_i=POS.SE_i[W+1]
+mean_elr=round(mean(exp(logelr)),3)
+# warning -- the loo package output depends upon the version of the loo package
+elpd_p=round(elpd_cpd$elpd_loo,2)
+elpd_i=round(elpd_inc$elpd_loo,2)
+SumStats=data.frame(Premium,POS.Estimate_p,POS.Estimate_i,POS.SE_p,POS.SE_i,
+                    mean_elr,elpd_p,elpd_i,stan_thin)
+print(SumStats)
+#
+# create histogram of reserve predictive distribution
+#
+par(mfrow=c(2,1))
+reserve=sort(Pred.POS_p-sum(adata$ploss[adata$cal==max(keep_cal)]))
+POS.ResMean_p=round(mean(reserve))
+POS.ResLow_p=round(reserve[250])
+POS.ResHigh_p=round(reserve[9750])
+hist(reserve,
+ main=paste("POS-vcp",run_id, "Predictive Distribution of the Loss Reserve"),
+#     xlim=c(75000,1250000),breaks=49, #specific for paper
+ xlab=paste("Mean =",POS.ResMean_p),
+ sub=paste("Low End (2.5%) =",POS.ResLow_p," High End (97.5%) =",POS.ResHigh_p))
+abline(v=POS.ResLow_p,lwd=3,col="red")
+abline(v=POS.ResMean_p,lwd=3,col="blue")
+abline(v=POS.ResHigh_p,lwd=3,col="red")
+#
+reserve=sort(Pred.POS_i-sum(adata$ploss[adata$cal==max(keep_cal)]))
+POS.ResMean_i=round(mean(reserve))
+POS.ResLow_i=round(reserve[250])
+POS.ResHigh_i=round(reserve[9750])
+hist(reserve,
+     main=paste("POS-vci",run_id, "Predictive Distribution of the Loss Reserve"),
+#     xlim=c(75000,1250000),breaks=49, #specific for paper
+     xlab=paste("Mean =",POS.ResMean_i),
+ sub=paste("Low End (2.5%) =",POS.ResLow_i," High End (97.5%) =",POS.ResHigh_i))
+abline(v=POS.ResLow_i,lwd=3,col="red")
+abline(v=POS.ResMean_i,lwd=3,col="blue")
+abline(v=POS.ResHigh_i,lwd=3,col="red")
+#
+# standardized residual plots
+#
+w=adata$w
+d=adata$d
+Premium=Premium[1:W]
+logloss_p=log(adata$ploss)
+logloss_i=log(adata$iloss)
+#
+std_resid_p=NULL
+std_resid_i=NULL
+ay=NULL
+dy=NULL
+cy=NULL
+s_size=200
+#
+# function to equate sample sizes for all ay,dy and cy
+#
+eq_s=function(std_r,yr,size){
+  eq_r=NULL
+  eq_y=NULL
+  for (y in unique(yr)){
+    std_resid_y=subset(std_r,yr==y)
+    yr_y=subset(yr,yr==y)
+    ss=sample(1:length(yr_y),size)
+    eq_r=c(eq_r,std_resid_y[ss])
+    eq_y=c(eq_y,yr_y[ss])
+  }
+  return(data.frame(eq_r,eq_y))
+}
+samp=sample(1:length(logelr),s_size)
+for (s in samp){
+  for (i in 1:length(logloss_p)){
+    if(i %in% fit_rec){
+      std_resid_p=c(std_resid_p,(logloss_p[i]-mu_p[s,i])/sig_p[s,d[i]])
+      std_resid_i=c(std_resid_i,(logloss_i[i]-mu_i[s,i])/sig_i[s,d[i]])
+      ay=c(ay,w[i])
+      dy=c(dy,d[i])
+      cy=c(cy,w[i]+d[i]-1)
+    }
+  }
+}
+#rng=range(std_resid)
+rng=c(-4.5,4.5)  #for the paper
+par(mfrow=c(1,3))
+#
+# paid boxplots
+#
+temp=eq_s(std_resid_p,ay,s_size)
+boxplot(split(temp$eq_r,temp$eq_y),notch=T,ylim=rng,
+        col="gray",main="",xlab="Accident Year")
+abline(h=0,lwd=5)
+abline(h=qnorm(.25))
+abline(h=qnorm(.75))
+#
+temp=eq_s(std_resid_p,dy,s_size)
+boxplot(split(temp$eq_r,temp$eq_y),notch=T,ylim=rng,
+        col="gray",main="",xlab="Development Year")
+abline(h=0,lwd=5)
+abline(h=qnorm(.25))
+abline(h=qnorm(.75))
+#
+temp=eq_s(std_resid_p,cy,s_size)
+boxplot(split(temp$eq_r,temp$eq_y),notch=T,ylim=rng,
+        col="gray",main="",xlab="Calendar Year")
+abline(h=0,lwd=5)
+abline(h=qnorm(.25))
+abline(h=qnorm(.75))
+#
+mtext(paste("POS-vc",run_id, "Standardized Residual Boxplots - Paid"),
+      side = 3, line = -2.75, outer = TRUE)
+#
+# incurred boxplots
+#
+temp=eq_s(std_resid_i,ay,s_size)
+boxplot(split(temp$eq_r,temp$eq_y),notch=T,ylim=rng,
+        col="gray",main="",xlab="Accident Year")
+abline(h=0,lwd=5)
+abline(h=qnorm(.25))
+abline(h=qnorm(.75))
+#
+temp=eq_s(std_resid_i,dy,s_size)
+boxplot(split(temp$eq_r,temp$eq_y),notch=T,ylim=rng,
+        col="gray",main="",xlab="Development Year")
+abline(h=0,lwd=5)
+abline(h=qnorm(.25))
+abline(h=qnorm(.75))
+#
+temp=eq_s(std_resid_i,cy,s_size)
+boxplot(split(temp$eq_r,temp$eq_y),notch=T,ylim=rng,
+        col="gray",main="",xlab="Calendar Year")
+abline(h=0,lwd=5)
+abline(h=qnorm(.25))
+abline(h=qnorm(.75))
+#
+mtext(paste("POS-vc",run_id, "Standardized Residual Boxplots - Incurred"),
+      side = 3, line = -2.75, outer = TRUE)
+#
+# combined paid and incurred
+#
+temp=eq_s(c(std_resid_p,std_resid_i),c(ay,ay),s_size)
+boxplot(split(temp$eq_r,temp$eq_y),notch=T,ylim=rng,
+        col="gray",main="",xlab="Accident Year")
+abline(h=0,lwd=5)
+abline(h=qnorm(.25))
+abline(h=qnorm(.75))
+#
+temp=eq_s(c(std_resid_p,std_resid_i),c(dy,dy),s_size)
+boxplot(split(temp$eq_r,temp$eq_y),notch=T,ylim=rng,
+        col="gray",main="",xlab="Development Year")
+abline(h=0,lwd=5)
+abline(h=qnorm(.25))
+abline(h=qnorm(.75))
+#
+temp=eq_s(c(std_resid_p,std_resid_i),c(cy,cy),s_size)
+boxplot(split(temp$eq_r,temp$eq_y),notch=T,ylim=rng,
+        col="gray",main="",xlab="Calendar Year")
+abline(h=0,lwd=5)
+abline(h=qnorm(.25))
+abline(h=qnorm(.75))
+#
+mtext(paste("POS-vc",run_id,
+            "Standardized Residual Boxplots - Paid and Incurred"),
+             side = 3, line = -2.75, outer = TRUE)
+#
+# plot paid and incurred gamma values
+#
+gamma_p_mean=colMeans((gamma_p[,keep_cal[-length(keep_cal)]]))
+gamma_os_mean=colMeans((gamma_os[,keep_cal[-length(keep_cal)]]))
+rng=range(gamma_p_mean,gamma_os_mean)
+par(mfrow=c(1,1))
+plot(keep_cal[-length(keep_cal)],gamma_p_mean,ylim=rng,type="l",
+     lwd=3,col="blue",
+     ylab=expression(paste("Mean(",gamma,")")),
+     main="Mean Speedup Rates",
+     xlab="Calendar Year")
+par(new=T)
+plot(keep_cal[-length(keep_cal)],gamma_os_mean,ylim=rng,type="l",
+     lwd=3,col="black",
+     main="",xlab="",ylab="")
+abline(h=0)
+legend(max(keep_cal)-3.5,max(rng),legend=c("Paid","Outstanding   "),
+       lty=1:1,lwd=3,col=c("blue","black"))
+#
+# write output data files
+#
+parm_summary=round(fitPOS_summary[,1:2],4)
+Runid=paste("POS-vcp",run_id)
+Ultimate.Loss=POS.Estimate_p
+Ultimate.SE=POS.SE_p
+Reserve.Low=POS.ResLow_p
+Reserve.Mean=POS.ResMean_p
+Reserve.High=POS.ResHigh_p
+ELPD=round(elpd_cpd$estimates[1,1],2)
+res_stats=rbind(earlier_runs[,2:8],data.frame(Runid,Ultimate.Loss,Ultimate.SE,
+                Reserve.Low,Reserve.Mean,Reserve.High,ELPD))
+Ultimate.Loss=POS.Estimate_i
+Ultimate.SE=POS.SE_i
+Reserve.Low=POS.ResLow_i
+Reserve.Mean=POS.ResMean_i
+Reserve.High=POS.ResHigh_i
+ELPD=round(elpd_inc$estimates[1,1],2)
+res_stats=rbind(res_stats,data.frame(Runid,Ultimate.Loss,Ultimate.SE,
+                Reserve.Low,Reserve.Mean,Reserve.High,ELPD))
+if (is.null(res.stats)==F){
+  write.csv(res_stats,file=res.stats)
+}
+if (is.null(AY.Exhibit)==F) write.csv(AY_Exhibit,file=AY.Exhibit)
+if (is.null(parm.summary)==F) write.csv(parm_summary,file=parm.summary)
+t1=Sys.time()
+print(t1-t0)
