@@ -1,0 +1,150 @@
+---
+title: "Replicate exhibits from the Second Edition of Meyers's Monograph"
+output: html_document
+---
+
+[Meyers 2015]: http://www.casact.org/pubs/monographs/papers/01-Meyers.PDF
+[Meyers 2016]: http://www.casact.org/pubs/forum/16wforum/Meyers.pdf
+[Meyers 2019]: https://www.casact.org/pubs/monographs/papers/08-Meyers.pdf
+[Meyers Case Study]: https://hubb.blob.core.windows.net/c7b64a78-dc16-47ec-91b4-31899c895f75-published/b1118727-dde3-4839-996e-9e7776cb3a65/AR-3%20-%20LL-Case-Study_CLRS.pdf?sv=2017-04-17&sr=c&sig=y%2FqwdCzUUbtRuGObrGrpGrB0YSjzwzwmzWbgCvgDdNM%3D&se=2021-12-26T17%3A55%3A01Z&sp=r
+
+```{r setup, include=FALSE}
+library(knitr)
+library(locktonr)
+library(tidyverse)
+library(rstan)
+library(loo)
+library(ChainLadder)
+library(parallel)
+library(doParallel)
+library(brms)
+library(tidybayes)
+library(flextable)
+library(reservetestr)
+
+knitr::opts_chunk$set(
+	fig.align = "center",
+	fig.path = "figures/",
+	message = FALSE,
+	warning = FALSE,
+	echo = FALSE
+)
+
+locktonr::gg_set_lockton_theme()
+
+```
+
+# Goal
+
+Replicate results from the 2nd Edition of Glenn Meyers's Monograph [STOCHASTIC LOSS RESERVING USING BAYESIAN MCMC MODELS][Meyers 2019]. The focus is on the univariate results first. Loosely using R code provided by Meyers.
+
+The package [reservetestr](https://github.com/problemofpoints/reservetestr) is used to access the data from the CAS loss reserve [database](http://www.casact.org/research/index.cfm?fa=loss_reserves_data) as well as additional helper functions. Meyers only uses a subset of the database. He chose four lines of business - comauto, ppauto, wkcomp, othliab - and selected 50 companies within each line. We can filter the full database to include only these companies.
+
+```{r import-data}
+triangle_data <- cas_loss_reserve_db %>% 
+  get_meyers_subset(edition = 2)
+```
+
+Replicate Tables 2.1 to 2.3 from [Meyers (2019)][Meyers 2019].
+
+```{r table_2.1}
+illust_tri <- triangle_data %>% 
+  filter(line == "comauto" & group_id == 353)
+tibble(AY = 1:10, Premium = number_format(attr(illust_tri$train_tri_set[[1]]$paid, "exposure"))) %>% 
+  pivot_wider(names_from = AY, values_from = Premium) %>% 
+  regulartable() %>% 
+  ft_lockton_theme() %>% 
+  add_title_header("Table 2.1 Illustrative Loss Triangle Net Earned Premium")
+```
+```{r table_2.2}
+illust_tri$full_long_tri[[1]] %>% 
+  as.triangle(origin = "acc_yr", dev = "dev_lag", value = "cum_paid_loss") %>% 
+  as.data.frame.matrix() %>% 
+  rownames_to_column("AY \ Lag") %>% 
+  as_tibble() %>% 
+  mutate_at(-1, number_format) %>% 
+  regulartable() %>% 
+  ft_lockton_theme() %>% 
+  add_title_header("Table 2.2 Paid Illustrative Loss Triangle Net of Reinsurance")
+```
+
+```{r table_2.3}
+illust_tri$full_long_tri[[1]] %>% 
+  as.triangle(origin = "acc_yr", dev = "dev_lag", value = "cum_caseinc_loss") %>% 
+  as.data.frame.matrix() %>% 
+  rownames_to_column("AY \ Lag") %>% 
+  as_tibble() %>% 
+  mutate_at(-1, number_format) %>% 
+  regulartable() %>% 
+  ft_lockton_theme() %>% 
+  add_title_header("Table 2.3 Incurred Illustrative Loss Triangle Net of Reinsurance")
+```
+
+# 7. The Changing Settlement Rate Model
+
+Run the Changing Settlement Rate (CSR) model. 
+
+```{r run-csr-illustrative}
+
+options(mc.cores = parallel::detectCores())
+
+stan_model_csr <- stan_model(file = here::here("stan/csr.stan"))
+
+init_vals <- function(chain_id){
+
+  set.seed(12345)
+  
+  list(r_alpha=rnorm(9,0,0.2),
+       r_beta=runif(9),
+       a_ig=runif(10),
+       logelr=runif(1,-0.75,-0.5),
+       gamma=rnorm(1,0,0.1))
+  
+}
+
+illust_data_stan <- illust_tri$full_long_tri[[1]] %>% 
+  filter((acc_yr + dev_lag - 1) <= 1997) %>% 
+  select(acc_yr, dev_lag, cum_paid_loss, net_ep) %>% 
+  transmute(origin_lag = acc_yr - min(acc_yr) + 1,
+            dev_lag = dev_lag,
+            logloss = log(cum_paid_loss),
+            logprem = log(net_ep))
+
+stan_data <- tidybayes::compose_data(illust_data_stan, 
+                                     "n_dev" = max(illust_data_stan$dev_lag), 
+                                     "n_origin" = max(illust_data_stan$origin_lag),
+                                     .n_name = n_prefix("n_data"))
+
+csr_fit <- sampling(stan_model_csr, 
+                    data = stan_data,
+                    pars = c("r_alpha", "r_beta", "sig2"), include = FALSE,
+                    init = init_vals, 
+                    seed = 12345, 
+                    control = list(adapt_delta = 0.999, max_treedepth = 50))
+```
+
+```{r csr-illustrative-params}
+csr_fit
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
