@@ -22,34 +22,33 @@ transformed parameters{
   real alpha[n_origin];
   real beta[n_dev];
   real speedup[n_origin];
-  real sig2[n_dev];
   real sig[n_dev];
   real mu[n_data];
   
   alpha[1] = 0;
-  for (i in 2:n_origin) alpha[i] = r_alpha[i-1];
+  alpha[2:n_origin] = r_alpha[1:(n_origin - 1)];
   
-  for (i in 1:(n_dev - 1)) beta[i] = r_beta[i];
+  beta[1:(n_dev - 1)] = r_beta[1:(n_dev - 1)];
   beta[n_dev] = 0;
   
   speedup[1] = 1;
-  for (i in 2:n_origin) speedup[i] = speedup[i-1]*(1-gamma);
+  for (i in 2:n_origin) speedup[i] = speedup[i-1] * (1 - gamma);
   
-  sig2[n_dev] = gamma_cdf(1/a_ig[n_dev],1,1);
-  for (i in 1:(n_dev - 1)) sig2[n_dev-i] = sig2[n_dev + 1 -i] + gamma_cdf(1/a_ig[i], 1, 1);
-  sig = sqrt(sig2);
+  sig[n_dev] = gamma_cdf(1/a_ig[n_dev],1,1);
+  for (i in 1:(n_dev - 1)) sig[n_dev-i] = sig[n_dev + 1 - i] + gamma_cdf(1 / a_ig[i], 1, 1);
+  sig = sqrt(sig);
   
   for (i in 1:n_data){
-    mu[i] = logprem[i] + logelr + alpha[origin_lag[i]] + beta[dev_lag[i]]*speedup[origin_lag[i]];
+    mu[i] = logprem[i] + logelr + alpha[origin_lag[i]] + beta[dev_lag[i]] * speedup[origin_lag[i]];
   }
 }
 
 model {
-  r_alpha ~ normal(0, 3.162);
-  r_beta ~ normal(0, 3.162);
+  r_alpha ~ student_t(3, 0, 3.162);
+  r_beta ~ student_t(3, 0, 3.162);
   a_ig ~ inv_gamma(1,1);
   logelr ~ normal(-.4, 3.162);
-  gamma ~ normal(0, 0.05);
+  gamma ~ student_t(4, 0, 0.05);
   
   logloss ~ normal(mu, sig[dev_lag]);
 }

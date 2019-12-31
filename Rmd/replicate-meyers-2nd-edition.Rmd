@@ -21,6 +21,7 @@ library(brms)
 library(tidybayes)
 library(flextable)
 library(reservetestr)
+library(patchwork)
 
 knitr::opts_chunk$set(
 	fig.align = "center",
@@ -115,7 +116,8 @@ stan_data <- tidybayes::compose_data(illust_data_stan,
                                      "n_origin" = max(illust_data_stan$origin_lag),
                                      .n_name = n_prefix("n_data"))
 
-csr_fit <- sampling(stan_model_csr, 
+csr_fit <- sampling(stan_model_csr,
+                    iter = 5000,
                     data = stan_data,
                     pars = c("r_alpha", "r_beta", "sig2"), include = FALSE,
                     init = init_vals, 
@@ -123,19 +125,170 @@ csr_fit <- sampling(stan_model_csr,
                     control = list(adapt_delta = 0.999, max_treedepth = 50))
 ```
 
-```{r csr-illustrative-params}
-csr_fit
+## Table 7.1
+
+```{r table-7.1}
+illust_csr_param_sims <- gather_draws(csr_fit, logelr, alpha[origin_lag], beta[origin_lag], gamma, sig[origin_lag])
+
+illust_csr_param_sims %>% 
+  summarise(.mean = mean(.value), .sd = sd(.value)) %>% 
+  ungroup() %>% 
+  mutate_at(3:4, number_format, 4) %>% 
+  mutate(.variable = if_else(is.na(origin_lag), .variable, paste0(.variable, "_", origin_lag))) %>% 
+  select(-origin_lag) %>% 
+  regulartable() %>% 
+  align(j=1, align = "left", part = "all") %>% 
+  ft_lockton_theme() %>% 
+  add_title_header("Table 7.1. CSR Model Parameter Summary - Paid")
+```
+## Figure 7.1
+
+```{r figure-7.1}
+illust_csr_param_sims %>% 
+  filter(.variable == "gamma") %>% 
+  ggplot(aes(x = .value)) +
+  geom_histogram(color = lockton_colors$blue_gray) +
+  geom_vline(xintercept = 0.0, color = lockton_colors$gold) +
+  scale_x_continuous(breaks = c(-0.1, -0.05, 0, 0.05, 0.1, 0.15, 0.2)) +
+  labs(x = "gamma", title = "Figure 7.1. CSR Posterior Distribution of gamma", 
+       subtitle = "Paid Illustrative Loss Triangle")
+```
+```{r sim-predictions}
+sigma_10 <- spread_draws(csr_fit, sig[origin_lag]) %>% 
+  ungroup() %>% 
+  filter(origin_lag == max(origin_lag)) %>% 
+  select(.draw, sig)
+
+illust_sim_params <- spread_draws(csr_fit, logelr, alpha[origin_lag]) %>% 
+  ungroup() %>% 
+  left_join(sigma_10, by = ".draw") %>% 
+  left_join(illust_data_stan %>% distinct(origin_lag, logprem), by = "origin_lag")
+
+illust_sim_results <- illust_sim_params %>% 
+  mutate(.value = rlnorm(nrow(illust_sim_params), logprem + logelr + alpha, sig))
 ```
 
+## Table 7.2 
 
+```{r table-7.2}
 
+illust_csr_pred_summary <- illust_sim_results %>% 
+  group_by(origin_lag) %>% 
+  summarise(estimate = mean(.value),
+            se = sd(.value), 
+            cv = se / estimate) %>% 
+  bind_rows(
+    illust_sim_results %>% 
+      group_by(.draw) %>%
+      summarise(.value = sum(.value)) %>% 
+      summarise(estimate = mean(.value),
+                se = sd(.value), 
+                cv = se / estimate) %>% 
+      add_column(origin_lag = NA, .before = 1)
+  )
 
+illust_csr_pred_summary %>% 
+  left_join(
+    illust_tri$full_long_tri[[1]] %>% 
+      filter(dev_lag == 10) %>% 
+      mutate(origin_lag = acc_yr - min(acc_yr) + 1) %>% 
+      select(origin_lag, cum_paid_loss, net_ep) %>% 
+      add_row(origin_lag = NA, 
+              cum_paid_loss = sum(.$cum_paid_loss), 
+              net_ep = sum(.$net_ep)), by = "origin_lag") %>% 
+  transmute("AY" = number_format(origin_lag), 
+            "Premium" = number_format(net_ep), 
+            "Estimate" = number_format(estimate),
+            "SE" = number_format(se),
+            "CV" = pct_format(cv),
+            "Outcome" = number_format(cum_paid_loss)) %>% 
+  regulartable() %>% 
+  ft_lockton_theme() %>% 
+  align(align = "right", part = "all") %>% 
+  add_title_header("Table 7.2. CSR Model Output for the Paid Illustrative Loss Triangle")
+```
 
+## Figure 7.3
 
+```{r figure-7.3}
+fitted_vals <- spread_draws(csr_fit, mu[n_data]) %>% 
+  ungroup() %>% 
+  filter(.draw <= 100) %>% 
+  left_join(illust_data_stan %>% 
+              mutate(n_data = 1:n()), by = "n_data") %>% 
+  left_join(spread_draws(csr_fit, sig[dev_lag]) %>% 
+              ungroup() %>% 
+              select(.draw, dev_lag, sig), by = c(".draw","dev_lag")) %>% 
+  mutate(.std_resid = (logloss - mu) / sig,
+         cal_yr = origin_lag + dev_lag - 1)
 
+## ---- resid_ggplot ----
+gg_resid_plot <- function(df, x_var, x_lab = NULL, y_lab = NULL){
+  
+  gg <- ggplot(data = df, aes_string(y = ".std_resid")) +
+    geom_hline(aes(yintercept = 0), size=0.65) +
+    geom_hline(aes(yintercept = -3), size=0.65) +
+    geom_hline(aes(yintercept = 3), size=0.65) +
+    geom_point(aes_string(x = x_var)) +
+    ylim(-4.0, 4.0) + scale_x_continuous(breaks = c(2,4,6,8,10)) +
+    xlab(x_lab) + ylab(y_lab) +
+    ggtitle(paste0(x_lab,""))
+  
+  gg
+  
+}
+gg_resid_boxplot <- function(df, x_var, x_lab = NULL, y_lab = NULL){
+  
+  gg <- ggplot(data = df, aes_string(y = ".std_resid")) +
+    geom_hline(aes(yintercept = 0), size=0.65) +
+    geom_hline(aes(yintercept = -0.675), size=0.65) +
+    geom_hline(aes(yintercept = 0.675), size=0.65) +
+    geom_boxplot(aes_string(x = x_var, group = x_var), colour = lockton_colors$gold) +
+    scale_x_continuous(breaks = c(2,4,6,8,10)) +
+    scale_y_continuous(breaks = c(-3:3), limits = c(-3,3)) +
+    xlab(x_lab) + ylab(y_lab) +
+    ggtitle(paste0(x_lab,""))
+  
+  gg
+  
+}
 
+gg_resid_boxplot(fitted_vals, "origin_lag", x_lab = "Accident year", y_lab = "Standardized residuals") +
+gg_resid_boxplot(fitted_vals, "dev_lag", x_lab = "Development year") +
+gg_resid_boxplot(fitted_vals, "cal_yr", x_lab = "Calendar year", y_lab = "Standardized residuals") + 
+  patchwork::plot_layout(nrow = 2)
+```
 
+## Optimize current CSR Stan code
 
+- use `brms` to get optimized code
+- prior predicive checks? test impact of prior distributions
+- add alternative speedup formulations
+
+```{r run-csr-illustrative2}
+
+stan_model_csr2 <- stan_model(file = here::here("stan/csr2.stan"))
+
+csr_fit2 <- sampling(stan_model_csr2,
+                    iter = 5000,
+                    data = stan_data,
+                    pars = c("r_alpha", "r_beta"), include = FALSE,
+                    init = init_vals, 
+                    seed = 12345, 
+                    control = list(adapt_delta = 0.999, max_treedepth = 50))
+```
+
+```{r brms}
+csr_brms <- brm(logloss ~ 1 + offset(logprem) + factor(origin_lag) + factor(dev_lag),
+                data = illust_data_stan,
+                family = gaussian(), 
+                save_model = here::here("stan/csr_brms.stan"))
+
+```
+
+# Run CSR method on 200 paid loss triangles
+
+- add hierarchical component (alphas)
 
 
 
