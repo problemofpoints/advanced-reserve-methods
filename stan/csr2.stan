@@ -9,6 +9,7 @@ data {
   real logloss[n_data];
   int<lower=1,upper=n_origin> origin_lag[n_data];
   int<lower=1,upper=n_dev> dev_lag[n_data];
+  int prior_only;  // should the likelihood be ignored?
 }
 
 parameters {
@@ -44,13 +45,16 @@ transformed parameters{
 }
 
 model {
-  r_alpha ~ student_t(3, 0, 3.162);
-  r_beta ~ student_t(3, 0, 3.162);
-  a_ig ~ inv_gamma(1,1);
-  logelr ~ normal(-.4, 3.162);
-  gamma ~ student_t(4, 0, 0.05);
+  target += student_t_lpdf(r_alpha | 3, 0, 1);
+  target += student_t_lpdf(r_beta | 3, 0, 1);
+  target += inv_gamma_lpdf(a_ig | 1, 1);
+  target += normal_lpdf(logelr | -0.4, 3.162);
+  target += student_t_lpdf(gamma | 4, 0, 0.1);
   
-  logloss ~ normal(mu, sig[dev_lag]);
+  // likelihood including all constants
+  if (!prior_only) {
+    target += normal_lpdf(logloss | mu, sig[dev_lag]);
+  }
 }
 
 generated quantities{

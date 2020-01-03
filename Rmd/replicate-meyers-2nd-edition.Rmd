@@ -22,6 +22,7 @@ library(tidybayes)
 library(flextable)
 library(reservetestr)
 library(patchwork)
+library(bayesplot)
 
 knitr::opts_chunk$set(
 	fig.align = "center",
@@ -87,6 +88,7 @@ Run the Changing Settlement Rate (CSR) model.
 
 ```{r run-csr-illustrative}
 
+rstan_options(auto_write = TRUE)
 options(mc.cores = parallel::detectCores())
 
 stan_model_csr <- stan_model(file = here::here("stan/csr.stan"))
@@ -154,40 +156,38 @@ illust_csr_param_sims %>%
        subtitle = "Paid Illustrative Loss Triangle")
 ```
 ```{r sim-predictions}
-sigma_10 <- spread_draws(csr_fit, sig[origin_lag]) %>% 
+illust_sim_params <- spread_draws(csr_fit, logelr, alpha[origin_lag], 
+                                      beta[dev_lag], speedup[dev_lag], sig[dev_lag]) %>% 
   ungroup() %>% 
-  filter(origin_lag == max(origin_lag)) %>% 
-  select(.draw, sig)
-
-illust_sim_params <- spread_draws(csr_fit, logelr, alpha[origin_lag]) %>% 
-  ungroup() %>% 
-  left_join(sigma_10, by = ".draw") %>% 
   left_join(illust_data_stan %>% distinct(origin_lag, logprem), by = "origin_lag")
 
 illust_sim_results <- illust_sim_params %>% 
-  mutate(.value = rlnorm(nrow(illust_sim_params), logprem + logelr + alpha, sig))
+  mutate(.value = rlnorm(nrow(illust_sim_params), logprem + logelr + alpha + beta * speedup, sig))
 ```
 
 ## Table 7.2 
 
 ```{r table-7.2}
 
-illust_csr_pred_summary <- illust_sim_results %>% 
-  group_by(origin_lag) %>% 
+illust_csr_pred_summary <- illust_sim_results %>%
+  group_by(origin_lag, dev_lag) %>% 
   summarise(estimate = mean(.value),
             se = sd(.value), 
             cv = se / estimate) %>% 
+  ungroup() %>% 
   bind_rows(
     illust_sim_results %>% 
+      filter(dev_lag == 10) %>% 
       group_by(.draw) %>%
       summarise(.value = sum(.value)) %>% 
       summarise(estimate = mean(.value),
                 se = sd(.value), 
                 cv = se / estimate) %>% 
-      add_column(origin_lag = NA, .before = 1)
+      add_column(origin_lag = NA, dev_lag = 10, .before = 1)
   )
 
 illust_csr_pred_summary %>% 
+  filter(dev_lag == 10) %>% 
   left_join(
     illust_tri$full_long_tri[[1]] %>% 
       filter(dev_lag == 10) %>% 
@@ -206,6 +206,33 @@ illust_csr_pred_summary %>%
   ft_lockton_theme() %>% 
   align(align = "right", part = "all") %>% 
   add_title_header("Table 7.2. CSR Model Output for the Paid Illustrative Loss Triangle")
+```
+## Posterior predictive distributions by accident year
+
+```{r pp_check-csr}
+illust_sim_results %>% 
+  filter(.draw %in% which((.draw %% 100) == 1)) %>% 
+  mutate(origin = origin_lag + 1988 - 1) %>% 
+  ggplot() +
+  geom_line(aes(x = dev_lag, y = .value, group = .draw), 
+            alpha = 0.1, colour = lockton_colors$gray) +
+  geom_line(aes(y = estimate, x = dev_lag), colour = lockton_colors$gold,
+            data = illust_csr_pred_summary %>% 
+              filter(!is.na(origin_lag)) %>% 
+              mutate(origin = origin_lag + 1988 - 1)) +
+  geom_point(aes(y = cum_paid_loss, x = dev_lag, fill = factor(obs)), 
+             shape = 21, colour = lockton_colors$dark_blue,
+             data = illust_tri$full_long_tri[[1]] %>% 
+                      mutate(origin_lag = acc_yr - min(acc_yr) + 1,
+                             origin = acc_yr,
+                             obs = if_else(dev_yr <= max(acc_yr), "Observation", "Hold out"))) +
+  scale_fill_manual(values = c("white", lockton_colors$dark_blue)) +
+  facet_wrap(~ origin) +
+  scale_y_continuous(labels = scales::number_format(big.mark = ",")) +
+  scale_x_continuous(breaks = seq(from = 2, to = 10, by = 2)) +
+  labs(x = "Development year", y = "Cumulative Paid Loss ($)",
+       title = "Illustrative Insurer - Posterior predictive check",
+       subtitle = "Cumulative paid losses")
 ```
 
 ## Figure 7.3
@@ -262,20 +289,136 @@ gg_resid_boxplot(fitted_vals, "cal_yr", x_lab = "Calendar year", y_lab = "Standa
 ## Optimize current CSR Stan code
 
 - use `brms` to get optimized code
-- prior predicive checks? test impact of prior distributions
+- add prior parameters as data in stan
 - add alternative speedup formulations
 
-```{r run-csr-illustrative2}
+```{r run-csr-illustrative2, message=FALSE, warning=FALSE}
 
 stan_model_csr2 <- stan_model(file = here::here("stan/csr2.stan"))
 
 csr_fit2 <- sampling(stan_model_csr2,
                     iter = 5000,
-                    data = stan_data,
+                    data = c(stan_data, list(prior_only = FALSE)),
                     pars = c("r_alpha", "r_beta"), include = FALSE,
                     init = init_vals, 
                     seed = 12345, 
                     control = list(adapt_delta = 0.999, max_treedepth = 50))
+
+csr_fit2_map <- vb(stan_model_csr2,
+                   data = stan_data,
+                   pars = c("r_alpha", "r_beta"), include = FALSE,
+                   init = init_vals,
+                   seed = 12345)
+```
+
+```{r csr-investigate-priors}
+
+csr_fit2_prior <- sampling(stan_model_csr2,
+                    iter = 2000,
+                    data = c(stan_data, list(prior_only = TRUE)),
+                    pars = c("r_alpha", "r_beta"), include = FALSE,
+                    init = init_vals, 
+                    seed = 12345, 
+                    control = list(adapt_delta = 0.999, max_treedepth = 50))
+
+illust_csr_param_sims_prior <- gather_draws(csr_fit2_prior, logelr, alpha[origin_lag], beta[origin_lag], gamma, sig[origin_lag])
+
+illust_csr_param_sims_prior %>% 
+  summarise(.mean = mean(.value), .sd = sd(.value)) %>% 
+  ungroup() %>% 
+  mutate_at(3:4, number_format, 4) %>% 
+  mutate(.variable = if_else(is.na(origin_lag), .variable, paste0(.variable, "_", origin_lag))) %>% 
+  select(-origin_lag) %>% 
+  regulartable() %>% 
+  align(j=1, align = "left", part = "all") %>% 
+  ft_lockton_theme() %>% 
+  add_title_header("Table 7.1. CSR Model Parameter Summary - Paid")
+
+mcmc_areas(
+   as.array(csr_fit2_prior), 
+   pars = vars("logelr", "gamma", 
+               contains("sig"), contains("alpha"), contains("beta")),
+   prob = 0.8, # 80% intervals
+   prob_outer = 0.99, # 99%
+   point_est = "mean") + 
+  ggplot2::labs(
+    title = "Prior parameter distributions",
+    subtitle = "with medians and 80% intervals")
+
+```
+```{r ppc-sims}
+illust_sim_params_prior <- spread_draws(csr_fit2_prior, logelr, alpha[origin_lag], 
+                                      beta[dev_lag], speedup[dev_lag], sig[dev_lag]) %>% 
+  ungroup() %>% 
+  left_join(illust_data_stan %>% distinct(origin_lag, logprem), by = "origin_lag")
+
+illust_sim_results_prior <- illust_sim_params_prior %>% 
+  mutate(.value = rlnorm(nrow(illust_sim_params_prior), logprem + logelr + alpha + beta * speedup, sig))
+
+illust_csr_pred_summary_prior <- illust_sim_results_prior %>%
+  group_by(origin_lag, dev_lag) %>% 
+  summarise(estimate = median(.value),
+            se = sd(.value), 
+            cv = se / estimate) %>% 
+  ungroup() %>% 
+  bind_rows(
+    illust_sim_results_prior %>% 
+      filter(dev_lag == 10) %>% 
+      group_by(.draw) %>%
+      summarise(.value = sum(.value)) %>% 
+      summarise(estimate = median(.value),
+                se = sd(.value), 
+                cv = se / estimate) %>% 
+      add_column(origin_lag = NA, dev_lag = 10, .before = 1)
+  )
+
+illust_csr_pred_summary_prior %>% 
+  filter(dev_lag == 10) %>% 
+  left_join(
+    illust_tri$full_long_tri[[1]] %>% 
+      filter(dev_lag == 10) %>% 
+      mutate(origin_lag = acc_yr - min(acc_yr) + 1) %>% 
+      select(origin_lag, cum_paid_loss, net_ep) %>% 
+      add_row(origin_lag = NA, 
+              cum_paid_loss = sum(.$cum_paid_loss), 
+              net_ep = sum(.$net_ep)), by = "origin_lag") %>% 
+  transmute("AY" = number_format(origin_lag), 
+            "Premium" = number_format(net_ep), 
+            "Estimate" = number_format(estimate),
+            "SE" = number_format(se),
+            "CV" = pct_format(cv),
+            "Outcome" = number_format(cum_paid_loss)) %>% 
+  regulartable() %>% 
+  ft_lockton_theme() %>% 
+  align(align = "right", part = "all") %>% 
+  add_title_header("Table 7.2. CSR Model Output for the Paid Illustrative Loss Triangle")
+
+```
+
+```{r pp_check-csr-priors}
+illust_sim_results_prior %>% 
+  filter(.draw %in% which((.draw %% 100) == 1)) %>% 
+  mutate(origin = origin_lag + 1988 - 1) %>% 
+  ggplot() +
+  geom_line(aes(x = dev_lag, y = .value, group = .draw), 
+            alpha = 0.1, colour = lockton_colors$gray) +
+  geom_line(aes(y = estimate, x = dev_lag), colour = lockton_colors$gold,
+            data = illust_csr_pred_summary_prior %>% 
+              filter(!is.na(origin_lag)) %>% 
+              mutate(origin = origin_lag + 1988 - 1)) +
+  geom_point(aes(y = cum_paid_loss, x = dev_lag, fill = factor(obs)), 
+             shape = 21, colour = lockton_colors$dark_blue,
+             data = illust_tri$full_long_tri[[1]] %>% 
+                      mutate(origin_lag = acc_yr - min(acc_yr) + 1,
+                             origin = acc_yr,
+                             obs = if_else(dev_yr <= max(acc_yr), "Observation", "Hold out"))) +
+  scale_fill_manual(values = c("white", lockton_colors$dark_blue)) +
+  facet_wrap(~ origin) +
+  scale_y_continuous(labels = scales::number_format(big.mark = ",")) +
+  scale_x_continuous(breaks = seq(from = 2, to = 10, by = 2)) +
+  labs(x = "Development year", y = "Cumulative Paid Loss ($)",
+       title = "Illustrative Insurer - Posterior predictive check",
+       subtitle = "Cumulative paid losses")
 ```
 
 ```{r brms}
@@ -289,7 +432,8 @@ csr_brms <- brm(logloss ~ 1 + offset(logprem) + factor(origin_lag) + factor(dev_
 # Run CSR method on 200 paid loss triangles
 
 - add hierarchical component (alphas)
-
+- test mick enhanced Clark/Guzsca model
+- test hierarchical component model
 
 
 
