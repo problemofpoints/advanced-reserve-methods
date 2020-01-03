@@ -288,24 +288,41 @@ gg_resid_boxplot(fitted_vals, "cal_yr", x_lab = "Calendar year", y_lab = "Standa
 
 ## Optimize current CSR Stan code
 
-- use `brms` to get optimized code
-- add prior parameters as data in stan
 - add alternative speedup formulations
 
 ```{r run-csr-illustrative2, message=FALSE, warning=FALSE}
 
 stan_model_csr2 <- stan_model(file = here::here("stan/csr2.stan"))
 
+stan_data2_prior <- c(stan_data, 
+                    list(prior_only = TRUE,
+                     logelrparams = c(-0.4, 0.7),
+                     alphasigma = 0.5,
+                     betaparams = matrix(c(-log(rev(1/summary(MackChainLadder(illust_tri$train_tri_set[[1]]$paid))$ByOrigin$Dev.To.Date)), 
+                                           rep(0.5, 10)), 
+                                         ncol = 2, nrow = 10),
+                     sigparams = 0.2,
+                     gammasig = 0.15))
+
+stan_data2 <- c(stan_data, 
+                list(prior_only = FALSE,
+                     logelrparams = c(-0.4, 1),
+                     alphasigma = 2,
+                     betaparams = matrix(c(rep(0, 10), rep(2, 10)), 
+                                         ncol = 2, nrow = 10),
+                     sigparams = 0.8,
+                     gammasig = 0.1))
+
 csr_fit2 <- sampling(stan_model_csr2,
                     iter = 5000,
-                    data = c(stan_data, list(prior_only = FALSE)),
+                    data = stan_data2,
                     pars = c("r_alpha", "r_beta"), include = FALSE,
                     init = init_vals, 
                     seed = 12345, 
                     control = list(adapt_delta = 0.999, max_treedepth = 50))
 
 csr_fit2_map <- vb(stan_model_csr2,
-                   data = stan_data,
+                   data = stan_data2,
                    pars = c("r_alpha", "r_beta"), include = FALSE,
                    init = init_vals,
                    seed = 12345)
@@ -315,13 +332,13 @@ csr_fit2_map <- vb(stan_model_csr2,
 
 csr_fit2_prior <- sampling(stan_model_csr2,
                     iter = 2000,
-                    data = c(stan_data, list(prior_only = TRUE)),
+                    data = stan_data2_prior,
                     pars = c("r_alpha", "r_beta"), include = FALSE,
                     init = init_vals, 
                     seed = 12345, 
                     control = list(adapt_delta = 0.999, max_treedepth = 50))
 
-illust_csr_param_sims_prior <- gather_draws(csr_fit2_prior, logelr, alpha[origin_lag], beta[origin_lag], gamma, sig[origin_lag])
+illust_csr_param_sims_prior <- gather_draws(csr_fit2, logelr, alpha[origin_lag], beta[origin_lag], gamma, sig[origin_lag])
 
 illust_csr_param_sims_prior %>% 
   summarise(.mean = mean(.value), .sd = sd(.value)) %>% 
@@ -333,9 +350,11 @@ illust_csr_param_sims_prior %>%
   align(j=1, align = "left", part = "all") %>% 
   ft_lockton_theme() %>% 
   add_title_header("Table 7.1. CSR Model Parameter Summary - Paid")
+```
 
+```{r prior-dist}
 mcmc_areas(
-   as.array(csr_fit2_prior), 
+   as.array(csr_fit2), 
    pars = vars("logelr", "gamma", 
                contains("sig"), contains("alpha"), contains("beta")),
    prob = 0.8, # 80% intervals
@@ -345,9 +364,32 @@ mcmc_areas(
     title = "Prior parameter distributions",
     subtitle = "with medians and 80% intervals")
 
+illust_csr_param_sims_prior %>% ungroup() %>% filter(.variable=="logelr") %>% 
+  mutate(.value = exp(.value)) %>% pull(.value) %>% qplot()
+illust_csr_param_sims_prior %>% ungroup() %>% filter(.variable=="gamma") %>% 
+  pull(.value) %>% qplot()
+illust_csr_param_sims_prior %>% ungroup() %>% 
+  filter(.variable=="alpha" & origin_lag != 1) %>% 
+  mutate(.value = exp(.value)) %>%
+  ggplot(aes(x=.value)) + 
+  geom_histogram() + 
+  facet_wrap(~ origin_lag)
+illust_csr_param_sims_prior %>% ungroup() %>% 
+  filter(.variable=="beta" & origin_lag != 10) %>% 
+  mutate(.value = exp(.value)) %>%
+  ggplot(aes(x=.value)) + 
+  geom_histogram() + 
+  facet_wrap(~ origin_lag)
+illust_csr_param_sims_prior %>% ungroup() %>% 
+  filter(.variable=="sig") %>% 
+  ggplot(aes(x=.value)) + 
+  geom_histogram() + 
+  facet_wrap(~ origin_lag)
 ```
+
+
 ```{r ppc-sims}
-illust_sim_params_prior <- spread_draws(csr_fit2_prior, logelr, alpha[origin_lag], 
+illust_sim_params_prior <- spread_draws(csr_fit2, logelr, alpha[origin_lag], 
                                       beta[dev_lag], speedup[dev_lag], sig[dev_lag]) %>% 
   ungroup() %>% 
   left_join(illust_data_stan %>% distinct(origin_lag, logprem), by = "origin_lag")
@@ -357,7 +399,7 @@ illust_sim_results_prior <- illust_sim_params_prior %>%
 
 illust_csr_pred_summary_prior <- illust_sim_results_prior %>%
   group_by(origin_lag, dev_lag) %>% 
-  summarise(estimate = median(.value),
+  summarise(estimate = mean(.value),
             se = sd(.value), 
             cv = se / estimate) %>% 
   ungroup() %>% 
@@ -366,7 +408,7 @@ illust_csr_pred_summary_prior <- illust_sim_results_prior %>%
       filter(dev_lag == 10) %>% 
       group_by(.draw) %>%
       summarise(.value = sum(.value)) %>% 
-      summarise(estimate = median(.value),
+      summarise(estimate = mean(.value),
                 se = sd(.value), 
                 cv = se / estimate) %>% 
       add_column(origin_lag = NA, dev_lag = 10, .before = 1)
@@ -417,15 +459,15 @@ illust_sim_results_prior %>%
   scale_y_continuous(labels = scales::number_format(big.mark = ",")) +
   scale_x_continuous(breaks = seq(from = 2, to = 10, by = 2)) +
   labs(x = "Development year", y = "Cumulative Paid Loss ($)",
-       title = "Illustrative Insurer - Posterior predictive check",
+       title = "Illustrative Insurer - Prior predictive check",
        subtitle = "Cumulative paid losses")
 ```
 
 ```{r brms}
-csr_brms <- brm(logloss ~ 1 + offset(logprem) + factor(origin_lag) + factor(dev_lag),
-                data = illust_data_stan,
+csr_brms <- brm(bf(logloss ~ 1 + offset(logprem) + (1 | origin_lag) + dev_lag),
+                data = illust_data_stan %>% mutate(dev_lag = as.factor(dev_lag)),
                 family = gaussian(), 
-                save_model = here::here("stan/csr_brms.stan"))
+                save_model = here::here("stan/csr_brms2.stan"))
 
 ```
 
